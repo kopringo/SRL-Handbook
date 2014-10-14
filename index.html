@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sphere Research Labs - official handbook</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/handbook.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>Sphere Research Labs - official handbook</h1>
+
+      This document is the guide for users of our <em>online judge</em> based services including: 
+      <ul>
+        <li>Sphere Engine&trade;</li>
+        <li>Sphere Judge&trade;</li>
+        <li>Sphere Contest&trade;</li>
+      </ul>
+      <p>First of all <em>it is not</em> comprehensive and exhaustive manual for vast area of technical issues of mentioned services. We focus on the essence of functionality namely the idea of processing source codes submitted into the system. As the owner of one of our products you will be creator of new programming problems. Let as introduce the convention of naming - the person who creates the problem is <em>the problem setter</em> or <em>the author</em> and the person who use the service and solves the problem is just <em>the user</em>. All presented information are independent of the type of our service thus we just call it <em>service</em>. Also note that the services are rather oriented to deal with console applications with standard input/output communication. For more definitions please look at the <em>dictionary</em> appending.</p>
+
+      <h2>1. Introduction</h2>
+
+      <p>To sketch the idea as simple as possible let us consider the classical method of correctness verification for the source code. The mentor needs to try the code manually i.e. he needs to try it for some simple input data. In that situation even simple programs require at least small human readable interface. Let us consider the following toy example along with the <em>C</em> language solution:</p>
+
+      <div class="problem_example">
+        <div class="problem_name">Integer power</div>
+        <div class="problem_description">Write the program which takes two numbers <em>a</em> and <em>b</em> and returns the value of <em>a<sup>b</sup></em>.</div>
+        <div id="human-source-code" class="problem_sourcecode">
+<!-- HTML generated using hilite.me -->
+<div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">atob</span>(<span style="color: #B00040">int</span> a, <span style="color: #B00040">int</span> b)
+{
+  <span style="color: #B00040">int</span> i, result <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+  <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span>; i <span style="color: #666666">&lt;</span> b; i<span style="color: #666666">++</span>)
+  {
+    result <span style="color: #666666">*=</span> a;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> result;
+}
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+  <span style="color: #B00040">int</span> a,b;
+  printf(<span style="color: #BA2121">&quot;Give a: &quot;</span>);
+  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>a);
+  printf(<span style="color: #BA2121">&quot;Give b: &quot;</span>);
+  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>b);
+  printf(<span style="color: #BA2121">&quot;a to the power of b = %d&quot;</span>, atob(a,b));
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+        </div>
+      </div>
+
+      <p>After compiling and runing that piece of code the mentor can use the program. Nevertheless, it is easily seen that manual verification requires continuous preparation - for each input the mentor must know the correct output. That's the rule for all problems he manages. Another problem is that he probably wants to be reliable thus he needs to handle with all boundary, clever and problematic input instances. Some interesting situations can be pointed even for that simple problem above. For example, is <em>a</em> to the power of <em>zero</em> gives <em>1</em>?</p>
+
+
+      <p>If it somehow is not good motivation for automatic judge we can ask another question: how to deal with time and memory complexity issues? Academic experience of members of our team yelds that the automatic judge solutions save plenty of time and greatly improve the quality of verification.</p>
+
+      <p>Moving on to the online judging we will present you how we need to change approach. Now whole the process of the compiling, runing and testing going to be conducted by the machine thus we need to clearly specify how the program should communicate - that part we call <em>input/output specification</em>. Suppose we want to prepare the <em>Integer power</em> problem to automatic judging and suppose the presented source code fulfills desired input/output specification. It means we need, along with the problem definition, give the information that program expects two integer numbers on the input and needs to print the information "Print a: Print b: a to the power of b = a<sup>b</sup>". Clearly the output specification is highly unnatural.</p>
+
+      <p>As you can see we don't need to have any human readable interface at all. In fact, it is rather obstruction which can even leads to reject correct solutions due to some complicated or nonintuitive input or output requirements. How simple can the previous <em>Integer power</em> problem could be if we drop all the input / output formating? We don't want to have any "Give me the value" statements to obtain the input and "Result is" statements in the output thus it would be enough to stay with minimal source code:</p>
+
+        <div id="judge-source-code" class="problem_sourcecode">
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">atob</span>(<span style="color: #B00040">int</span> a, <span style="color: #B00040">int</span> b)
+{
+  <span style="color: #B00040">int</span> i, result <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+  <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span>; i <span style="color: #666666">&lt;</span> b; i<span style="color: #666666">++</span>)
+  {
+    result <span style="color: #666666">*=</span> a;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> result;
+}
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+  <span style="color: #B00040">int</span> a,b;
+  scanf(<span style="color: #BA2121">&quot;%d %d&quot;</span>, <span style="color: #666666">&amp;</span>a, <span style="color: #666666">&amp;</span>b);
+  printf(<span style="color: #BA2121">&quot;%d&quot;</span>, atob(a,b));
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+
+        </div>
+
+        <p>At the end we want to clearify that the input / output considerations have nothing in common with the length of user's source code. It's only related to the number of input / output operations. If you are experienced programmer it's probably obvious but we put such emphasis on that because of our experience with online judge beginners users. It's the most dangerous when you deal with programmers who have some basic knowledge already and along with that probably some habits. We highly recommend you to also put emphasis on input / output specific when you will present your instance of the service to your own users. More formal and deep description of input and output is one of the most important part of the next section.</p>
+
+        <p>Finally, let us take a look at the simplified submission flow diagram:</p>
+        
+        <div id="simple-submission-flow-diagram" class="centered_image_container"><img width="600" alt="Simple submission flow diagram" src="./fig/simple_diagram.png" /></div>
+
+        <p>In this diagram we can see how user's source code go through the system. Firstly it is compiled by a proper compiler (according to the selected programming language) what produce executable file<sup>1</sup>. In the next step created executable is fed with base input data thus we obtain some user's output file. The final step is the procedure of comparing user's output with the base output, we call it <em>judging</em>. The judge returns the status of the submission. Note that the diagram is a simplified sketch of the idea and we will extend both the picture and the explanation.</p>
+
+        <p class="footnote">1. In case of script languages we use proper interpreter to run the code.</p>
+
+      <h2 id="problems">2. Problems and submissions</h2>
+
+      <p>In this section we are going to give you insight into submission flow and online judge problem construction. From the previous section we know basics of the concept of the online judging. To better understand and make it possible to create own problems we will describe components of the problem:</p>
+
+      <ul id="problem-components">
+        <li><strong>Description</strong>
+          <ul>
+            <li>The task</li>
+            <li>Input / output specification</li>
+            <li>Examples</li>
+          </ul>
+        </li>
+        <li><strong>Test case(s)</strong> (possibly many)
+          <ul>
+            <li>Input file, Output file</li>
+            <li>Time limit</li>
+            <li>Judge</li>
+          </ul>
+        </li>
+        <li><strong>Master judge</strong></li>
+      </ul>
+
+      <p id="submission-flow">Before we begin the analysys of the individual components let us take a loot at the complete diagram of submission flow to embed the listed components in overall view.</p>
+
+      <div id="submission-flow-diagram" class="centered_image_container"><img width="700" alt="Full submission flow diagram" src="./fig/full_diagram.png" /></div>
+
+      <p>The diagram is the extension of the one from the previous section. The main difference is the appearance of the <em>master judge</em> component. Since we have introduced possiblity of many test cases (pairs input / output files) thus we need the summary component to combine the results from test case judges - we call that summary component <em>master judge</em>. The other new elements of the diagram was mentally present before but we purposely omited them to keep the view as simple as possible. Now we can explain that every submission need to precise <em>programming language</em> to choose proper compiler or interpreter. The problem description is the crucial part for users to make it possible to solve the problem.</p>
+
+      <p>Now let us recall the <em>Integer Power</em> problem since we are going to use it as a demonstration example. The probem is to compute the value of <em>a<sup>b</sup></em> for a given integers <em>a</em> and <em>b</em>.
+
+      <h3>Description</h3>
+        <p>This is the only important feature from the user's point of view. Users must be able to understand the problem to solve it successfully.</p>
+
+        <h4>The task</h4>
+        <p>The formal text describing the specificity of the problem usually in mathematical manner. To achieve good quality of the description it is a good habit to graphically illustrate the problem. It is also desirable to support a dry theory with simple examples.</p>
+
+        <p>According to the <em>Integer Power</em> problem we could write the taks as follows:
+          <div class="example-box"><p>Write the program which takes two numbers <em>a</em> and <em>b</em> and returns the value of <em>a<sup>b</sup></em>. For example for <em>a = 3</em> and <em>b = 4</em> the result is <em>3<sup>4</sup> = 81</em></p></div>
+        </p>
+
+        <h4>Input / output specification</h4>
+        <p>The previous part was formal from the mathematical side but not syntactically. Automatic judging is possible when we can make an assumption on the problems's input and output behaviour. The rest is a black box for us right now. We specify precisely what will be the input file structure to make possible for users to implement proper input gathering. The specification of input file should be an information that user can rely on.</p>
+
+        <p>On the other hand we expect that user produce output file which structure is also predictable. Formal specification of the output file is an information that we are going to rely on to verify the correctness of the submission.</p>
+
+        <p>According to the <em>Integer Power</em> problem let us recall <a href="#judge-source-code">possible solution</a> of the problem. We didn't specify any formal input or output syntax in the previous section. First attempt was the solution with the human readable interface and after that we modified the code to achieve a raw version. We can use that source code as a base for following formal specification:
+          <div class="example-box">
+            <p>
+              <strong>Input:</strong> In the only line of the input there will be two integer numbers <em>1 ≤ a ≤ 8</em> and <em>0 ≤ b ≤ 10</em> separated by a single space character.</p>
+            <p>
+              <strong>Output:</strong> Program should write a single number which is a value of <em>a<sup>b</sup></em>.
+            </p>
+          </div>
+        </p>
+
+        <h4>Examples</h4>
+        <p>In the task subsection we mentioned that it is a good habit to ilustrate the problem with the examples. According to that the present section seems to be redundant. In practice the examples here are dedicated to ilustrate that input and output files structure. In the best case scenario they cover every distinct configuration of parameters (up to numbers, letters etc.) which is important for more complicated problems.</p>
+
+        <p>According to the <em>Integer Power</em> problem we present how we could compose the examples:
+          <div class="example-box">
+            <p>
+            <strong>Example 1:</strong><br />
+            &nbsp;&nbsp;<strong>Input:</strong><br />
+            &nbsp;&nbsp;3 4<br />
+            &nbsp;&nbsp;<strong>Output:</strong><br />
+            &nbsp;&nbsp;81<br />
+            </p>
+            <p>
+            <strong>Example 2:</strong><br />
+            &nbsp;&nbsp;<strong>Input:</strong><br />
+            &nbsp;&nbsp;7 0<br />
+            &nbsp;&nbsp;<strong>Output:</strong><br />
+            &nbsp;&nbsp;1<br />
+            </p>
+          </div>
+        </p>
+          
+      <h3>Test case(s)</h3>
+        <p>Jast as the description was for user's only so the test cases are for the machine checker. This is the essence of the idea. The vast majority of real life usages implements the following schema: there is a pair of input and correct output and the script or the program which can compare that correct output with the user's output to decide whether user's answer is good or not.</p>
+ 
+        <h4>Input and output file</h4>
+        <p>The pair of corresponding files. Input file contains the instance of the problem and it must be consistent with the input specification. The output of the correct program should be contained in the output file. It is not necessery to write the solution to the program to create the output file - it can be obtained in any manner.</p>
+
+        <p>According to the <em>Integer Power</em> problem we present how we could prepare following test cases:
+          <div class="example-box">
+            <p>
+            <strong>Test case 1:</strong><br />
+            &nbsp;&nbsp;<strong>Input file:</strong><br />
+            &nbsp;&nbsp;3 4<br />
+            &nbsp;&nbsp;<strong>Output file:</strong><br />
+            &nbsp;&nbsp;81<br />
+            </p>
+            <p>
+            <strong>Test case 2:</strong><br />
+            &nbsp;&nbsp;<strong>Input file:</strong><br />
+            &nbsp;&nbsp;7 0<br />
+            &nbsp;&nbsp;<strong>Output file:</strong><br />
+            &nbsp;&nbsp;1<br />
+            </p>
+          </div>
+        </p>
+
+        <p><strong>Remark.</strong> It is recomended to construct the problems that are able to repeat the desired procedure as many times as we want to make it possible to wide test the input instances domain. We will see an example of such popular contruction in the next section.</p>
+
+        <h4>Time limit</h4>
+        <p>We have already pointed that one of the feature of online judging is the possiblity of estimation the time complexity. To achieve that the author of the problem has to adjust the timeout for program execution. Consider the case when the author knows two different algorithms for a problem, say <em>A</em> and <em>B</em>. Let us assume that the algorithm <em>A</em> is noticeable faster than the algorithm <em>B</em>. It is still not very easy and obvious how to preper the whole test case to distinguish between these two algorithms. However, assuming that we have input data which is processed in the time <em>t<sub>A</sub></em> for the algorithm <em>A</em> which is much faster than execution time <em>t<sub>B</sub></em> for the algorithm <em>B</em> we can simply set the time limit somewhere between those values.</p>
+
+        <p>With the timeout <em>t<sub>A</sub> ≤ t<sub>0</sub> ≤ t<sub>B</sub></em> we can assume that <em>A</em>-like algorithms will pass the test case and <em>B</em>-like algorithms will fail it with because of time limit exceeded.</p>
+        
+        <p><strong>Remark.</strong> Note that presented approach highly depends on the machine thus you need to adjust your time limit to the computing cluster rather then your local machine</p>
+
+        <p>Our toy example problem is much too simple in assumptions to allow us to present example of time limits that distinguish different algorithms thus we put default time limit of <em>1s</em>. In the next section we present more complex example where we introduce time limit which can help to estimate the algorithm quality.</p>
+
+        <h4>Judge</h4>
+        <p>The judge is the program which process user's program output after execution. Its task is to establish if the submission passed the test case and potentially also returns <em>the score</em>.</p>
+
+        <p>Usually the judge implementation is reduced to compare the base output with the user's output (possibly with some whitespaces difference ignore). We support problem setters with default judges:
+        <ul>
+          <li><strong>Strict</strong> - it requires outputs to be identical</li> 
+          <li><strong>Ignoring differences in whitespaces</strong> - similar to the previous one but it ignores all extra whitespaces</li>
+          <li><strong>Ignoring floating point errors up to a specific position</strong> - it allows the floating point numbers to be inaccurate i.e. we can accept the errors up to for example <em>0.001</em></li>
+        </ul>
+        <strong>Remark.</strong> The <em>Ignoring differences in whitespaces</em> judge is one of the most popular default choice. It is more liberal for output formating errors which in fact doesn't affect on the solution semantic correctness. Similarly <em>Ignoring floating point errors up to a specific position</em> judge is popular choice for problems where result numbers are not integers.
+        </p>
+
+        <p>We have mentioned that the judge can also returns <em>the score</em>. More information will be presented in the section <a href="advanced-judges">advanced test case judges</a>, for now you can assume that the score is the test case execution time.</p>
+
+        <p>It is possible to create own test case judges. The author can implement any kind of verification having full access to the input file, base input file, user's output file and even user's source code. For more information visit the section <a href="advanced-judges">advanced test case judges</a>.</p>
+
+        <p>For the <em>Integer Power</em> problem we decide to use default <em>Ignoring differences in whitespaces</em> judge for each test case thus we allow the user to generate extra whitespaces before and after the resulting number <em>a<sup>b</sup></em>. For example when user prints "   81    " as a result for "3 4" instance it is still correct answer.</p>
+
+      <h3>Master judge</h3>
+      <p>We have discussed the single test cases for the problem and establish that each of them return some information, say status and the score. The master judge is the component which combines all incoming results obtained from test cases to produce the final result which is the status and the score. You can look again at the <a href="#submission-flow-diagram">submission flow diagram</a> for better understand.</p>
+
+      <p>There are predefined master judges proper for most situations:
+      <ul>
+        <li><strong>Generic masterjudge</strong> - it gathers information from test case judges and requires all of them to be successful to establish final result as the success. When any test case ends with error the final answer is inherited from the first failed test case. For example when the problem have five test cases and the second and the fourth failed the final result is inherited from the second test case. Generic masterjudge combine the execution times of all testcases and yields the sum as the final score.</li>
+        <li><strong>Score is % of correctly solved sets</strong> - the more liberal masterjudge which allows to accept incomplete solution with the score which is the percentage of correctly solved test cases. For example when the problem have five test cases and again the second and the fourth failed but the rest was passed then the final score is equal to <em>60%</em>. The advantage is that the user gets more information about the correctness of its solution.</li>
+      </ul>
+      </p>
+
+      <p>When you need more complex master judging process or you want to slightly modify the existing ones you can create and upload it. You have access to the source code of default master judges and they can be used as a base for your modifications. Further information about designing master judges you can find in the section <a href="advanced-master-judges">Advanced master judges</a></p>
+
+      <p>The last missing part for the example we successively complete is the choice of master judge. We created two test cases and there is no need to implement the specific own master judge thus we select default one. When we need to distinguish the solutions as better or worst (but both correct) we should rather choose <em>Score is % of correctly solved sets</em> but in our situation each test case is a verification of correctness thus we select <em>Generic masterjudge</em> to force the user's solution to pass all test cases.</p>
+
+      <h4>Complete toy example specification</h4>
+      We have discussed all components of the problem specification therefore we are able to present whole problem setting:
+
+          <div class="example-box">
+            <h3 align="center">The Integer Power</h3>
+            <p>
+              <ul>
+                <li><h4>Description</h4>
+                  <p>Write the program which takes two numbers <em>a</em> and <em>b</em> and returns the value of <em>a<sup>b</sup></em>. For example for <em>a = 3</em> and <em>b = 4</em> the result is <em>3<sup>4</sup> = 81</em></p>
+                  <p>
+                    <strong>Input / output specification:</strong>
+                    <div class="left-indent">
+                      <p>
+                        <strong>Input:</strong> In the only line of the input there will be two integer numbers <em>1 ≤ a ≤ 8</em> and <em>0 ≤ b ≤ 10</em> separated by a single space character.</p>
+                      <p>
+                        <strong>Output:</strong> Program should write a single number which is a value of <em>a<sup>b</sup></em>.</strong>
+                      </p>
+                    </div>
+                  </p>
+                  <p>
+              <strong>Examples:</strong>
+              <div class="left-indent">
+                    <p>
+                    <strong>Example 1:</strong><br />
+                    &nbsp;&nbsp;<strong>Input:</strong><br />
+                    &nbsp;&nbsp;3 4<br />
+                    &nbsp;&nbsp;<strong>Output:</strong><br />
+                    &nbsp;&nbsp;81<br />
+                    </p>
+                    <p>
+                    <strong>Example 2:</strong><br />
+                    &nbsp;&nbsp;<strong>Input:</strong><br />
+                    &nbsp;&nbsp;7 0<br />
+                    &nbsp;&nbsp;<strong>Output:</strong><br />
+                    &nbsp;&nbsp;1<br />
+                    </p>
+                    </div>
+                  </p>
+                </li>
+                <li><h4>Test cases</h4>
+                  <div class="left-indent">
+                  <p>
+                    <p><strong>Test case 1:</strong></p>
+                    <p>
+                      &nbsp;&nbsp;<strong>Input file:</strong><br />
+                      &nbsp;&nbsp;3 4<br />
+                      &nbsp;&nbsp;<strong>Output file:</strong><br />
+                      &nbsp;&nbsp;81<br />
+                      </p>
+                      <p><strong>Judge</strong> - Ignoring differences in whitespaces</p>
+                      <p><strong>Time limit</strong> - 1s</p>
+                  </p>
+                  <p>
+                    <p><strong>Test case 2:</strong></p>
+                    <p>
+                      &nbsp;&nbsp;<strong>Input file:</strong><br />
+                      &nbsp;&nbsp;7 0<br />
+                      &nbsp;&nbsp;<strong>Output file:</strong><br />
+                      &nbsp;&nbsp;1<br />
+                      </p>
+                      <p><strong>Judge</strong> - Ignoring differences in whitespaces</p>
+                      <p><strong>Time limit</strong> - 1s</p>
+                  </p>
+                </div>
+                </li>
+                <li><h4>Master judge</h4>
+                  <div class="left-indent">Generic master judge</div>
+                </li>
+              </ul>
+          </div>
+
+      <h3 id="submission-statuses">Submission status</h3>
+      Ultimately, for a full understanding of the diagram let as briefly comment possible statuses which can be assigned to the submission.
+      <ul>
+        <li><strong>Accepted (AC)</strong> - the submission is a correct solution to the problem.</li>
+        <li><strong>Wrong answer (WA)</strong> - the submission is incorrect solution. It depends on master judge implementation but usually if submission failed in at least one test case the answer is wrong.</li>
+        <li><strong>Time limit exceeded (TLE)</strong> - the submission execution took to long. Again it depends on master judge but again usually to obtain TLE status from master judge is enough to exceed time in at least one test case.</li>
+        <li><strong>Runtime error (RE)</strong> - The error occurred during program execution.</li>
+        <li><strong>Compilation error (CE)</strong> - The error occurred during compilation or syntax validation in interpreter.</li>
+        <li><strong>Internal error (IE)</strong> - The error occurred on the serivice side. On of the possible reasons can be poorly designed test case judge or master judge.</li>
+      </ul>
+
+      More information along with examples of problems and source codes can be found in appendix <a href="more-about-statuses">statuses</a>.
+
+      <h2 id="example-problem">3. Example</h2>
+        <p>In this section we present more complicated example with full details to give you better overall look at abilities of our services. It is still an elementary example but it tell you much more about the specific of online judging.</p>
+
+        <p>The base of the problem is to count the sum of numbers from <em>1</em> to given <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>. We extend the problem to handle with multiple input numbers. We call it the <em>Initital sum</em> problem. Look at the following problem description:</p>
+
+        <div class="example-box">
+          <p>For a positive integer <em>n</em> calculate the value of the sum of all positive integers that are not greater than <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>. For example when <em>n = 5</em> then the correct answer is <em>15</em>.</p>
+          <p>
+            <strong>Input:</strong> In the first line there will be the number <em>1 ≤ t ≤ 10000000</em> which is the number of instances for your problem. In each of the next <em>t</em> lines there will be one number <em>n</em> for which you should calculate the described initial sum.
+          </p>
+          <p>
+            <strong>Output:</strong> For each <em>n</em> print the calculated initial sum. Separate answers with new line character.
+          </p>
+
+            <p>
+            <strong>Example 1:</strong><br />
+            &nbsp;&nbsp;<strong>Input:</strong><br />
+            &nbsp;&nbsp;4<br />
+            &nbsp;&nbsp;1<br />
+            &nbsp;&nbsp;2<br />
+            &nbsp;&nbsp;3<br />
+            &nbsp;&nbsp;4<br />
+            &nbsp;&nbsp;<strong>Output:</strong><br />
+            &nbsp;&nbsp;1<br />
+            &nbsp;&nbsp;3<br />
+            &nbsp;&nbsp;6<br />
+            &nbsp;&nbsp;10<br />
+            </p>
+            <p>
+            <strong>Example 2:</strong><br />
+            &nbsp;&nbsp;<strong>Input:</strong><br />
+            &nbsp;&nbsp;2<br />
+            &nbsp;&nbsp;10<br />
+            &nbsp;&nbsp;11<br />
+            &nbsp;&nbsp;<strong>Output:</strong><br />
+            &nbsp;&nbsp;55<br />
+            &nbsp;&nbsp;66<br />
+            </p>
+        </div>
+
+        <p>We have extened base problem of initial sum calculation to multiple calculation possibility which allows us to distinguis between faster and slower solutions (if we prepare rich test cases). Take into account that the possible input data can be too big for standard <em>int</em> type thus we will use <em>long long</em> type. Before we set test cases let us present two distinct solution to the problem:</p>
+
+        <div id="judge-source-code" class="problem_sourcecode">
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+
+<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> <span style="color: #0000FF">initsum</span>(<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n)
+{
+  <span style="color: #B00040">int</span> i;
+  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+  <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=1</span>; i <span style="color: #666666">&lt;=</span> n; i<span style="color: #666666">++</span>)
+  {
+    sum <span style="color: #666666">+=</span> i;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> sum;
+}
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+  <span style="color: #B00040">int</span> t;
+  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n;
+  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>t);
+  <span style="color: #008000; font-weight: bold">while</span> (t <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
+  {
+    scanf(<span style="color: #BA2121">&quot;%lld&quot;</span>, <span style="color: #666666">&amp;</span>n);
+    printf(<span style="color: #BA2121">&quot;%lld</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, initsum(n));
+    t<span style="color: #666666">--</span>;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+      </div>
+
+      <p>The first solution refers to the definition of the problem i.e. the function <em>initsum</em> iterates from <em>1</em> to <em>n</em> to calculate desired value. The calculation requires <em>n</em> operations of addition to obtain the result. It is basic school knowledge that there exist the compact formula for that problem and we use it in the second implementation:</p>
+
+
+      <div id="judge-source-code" class="problem_sourcecode">
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+
+<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> <span style="color: #0000FF">initsum</span>(<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n)
+{
+  <span style="color: #008000; font-weight: bold">return</span> n<span style="color: #666666">*</span>(n<span style="color: #666666">+1</span>)<span style="color: #666666">/2</span>;
+}
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+  <span style="color: #B00040">int</span> t;
+  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n;
+  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>t);
+  <span style="color: #008000; font-weight: bold">while</span> (t <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
+  {
+    scanf(<span style="color: #BA2121">&quot;%lld&quot;</span>, <span style="color: #666666">&amp;</span>n);
+    printf(<span style="color: #BA2121">&quot;%lld</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, initsum(n));
+    t<span style="color: #666666">--</span>;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+      </div>
+
+      <p>Both programs are correct answer to the problem but if we want to distinguish the algorithms we can design test cases that only the second solution can pass. As we mentioned before it highly depends on the computational power of the machine. We presend test cases that are valid for our current machines (Intel Pentium G860 3GHz). Our suggestion is to design one test case which is easy to pass for both algorithms to give information that the solution is correct and the second test case that is possible to pass only for the second algorithm. That will give an information that the correct answer can be too slow. The user submitting the solution similar to the first one he gets information about testcases and will be able to see that his program pass first test and exceeded time in the second.</p>
+
+      <p>We cannot put all input and output data here because of its size thus we write it in shortened manner:</p>
+
+      <div class="example-box">
+        <p>
+        <strong>Test case 1:</strong><br />
+        &nbsp;&nbsp;<strong>Input file:</strong><br />
+        &nbsp;&nbsp;1000<br />
+        &nbsp;&nbsp;1<br />
+        &nbsp;&nbsp;2<br />
+        &nbsp;&nbsp;...<br />
+        &nbsp;&nbsp;1000<br />
+        &nbsp;&nbsp;1000000<br />
+        &nbsp;&nbsp;<strong>Output file:</strong><br />
+        &nbsp;&nbsp;1<br />
+        &nbsp;&nbsp;3<br />
+        &nbsp;&nbsp;...<br />
+        &nbsp;&nbsp;500500<br />
+        &nbsp;&nbsp;500000500000<br />
+        </p>
+        <p>
+        <strong>Test case 2:</strong><br />
+        &nbsp;&nbsp;<strong>Input file:</strong><br />
+        &nbsp;&nbsp;1000000<br />
+        &nbsp;&nbsp;1<br />
+        &nbsp;&nbsp;2<br />
+        &nbsp;&nbsp;...<br />
+        &nbsp;&nbsp;1000000<br />
+        &nbsp;&nbsp;<strong>Output file:</strong><br />
+        &nbsp;&nbsp;1<br />
+        &nbsp;&nbsp;3<br />
+        &nbsp;&nbsp;...<br />
+        &nbsp;&nbsp;500000500000<br />
+        </p>
+      </div>
+
+      <p>Computational power of current machines is enough to finish first test case instantly. Both presented algorithms with time below <em>0.01s</em>. However it is good test case for corectness verification. First <em>1000</em> positive integers give us the assurance that solution is mathematically correct. We have also added single test with big number i.e. <em>n = 1000000</em> to make sure that user's solution bases on <em>long long</em> type. On the other hand the second test case is rich enough to make the first algorithm to exceed even <em>5s</em> time limit. The second algorithm works fast enough to pass that test case in time below <em>0.1s</em>. We have huge gap between <em>0.1s</em> and <em>5s</em> thus we can easily choose safe value as our time limit, for example again <em>1s</em>.</p>
+
+      <p>We still haven't chose judges for test cases and master judge for the problem. We don't have floating point numbers in our output file specification thus we rather decide to choose <em>Ignoring differences in whitespaces</em> judge for both test cases. It leaves users with possiblity of small formating errors without risk of unwanted rejections of theirs solutions. For example it is possible to separate output answers with spaces instead of new line characters.</p>
+
+      <p>We assume that we want to accept every correct solution but distinguish the better once and give them better score. The <em>Score is % of correctly solved sets</em> master judge is perfect for that purpose. Submitting the first solution achieves the result of <em>50%</em> while the second solution passes both test cases and its result is <em>100%</em>.</p>
+
+      <p><strong>Remark.</strong> Presented scoring method assumed both tests as equally worth <em>50%</em> each. To achieve different distribution of scores you need to modify the master judge and pick the scoring of test cases arbitrary. We present the example in the section <a href="advanced-master-judges">advanced master judges</a>.</p>
+
+      <p>To sum up we present full problem specification:</p>
+
+          <div class="example-box">
+            <h3 align="center">The Initial Sum</h3>
+            <p>
+              <ul>
+                <li><h4>Description</h4>
+                  <p>For a positive integer <em>n</em> calculate the value of the sum of all positive integers that are not greater than <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>. For example when <em>n = 5</em> then the correct answer is <em>15</em>.</p>
+                  <p>
+                    <strong>Input / output specification:</strong>
+                    <div class="left-indent">
+                      <p>
+                        <strong>Input:</strong> In the first line there will be the number <em>1 ≤ t ≤ 10000000</em> which is the number of instances for your problem. In each of the next <em>t</em> lines there will be one number <em>n</em> for which you should calculate the described initial sum.
+                      </p>
+                      <p>
+                        <strong>Output:</strong> For each <em>n</em> print the calculated initial sum. Separate answers with new line character.
+                      </p>
+                    </div>
+                  </p>
+                  <p>
+              <strong>Examples:</strong>
+                  <div class="left-indent">
+                      <p>
+                      <strong>Example 1:</strong><br />
+                      &nbsp;&nbsp;<strong>Input:</strong><br />
+                      &nbsp;&nbsp;4<br />
+                      &nbsp;&nbsp;1<br />
+                      &nbsp;&nbsp;2<br />
+                      &nbsp;&nbsp;3<br />
+                      &nbsp;&nbsp;4<br />
+                      &nbsp;&nbsp;<strong>Output:</strong><br />
+                      &nbsp;&nbsp;1<br />
+                      &nbsp;&nbsp;3<br />
+                      &nbsp;&nbsp;6<br />
+                      &nbsp;&nbsp;10<br />
+                      </p>
+                      <p>
+                      <strong>Example 2:</strong><br />
+                      &nbsp;&nbsp;<strong>Input:</strong><br />
+                      &nbsp;&nbsp;2<br />
+                      &nbsp;&nbsp;10<br />
+                      &nbsp;&nbsp;11<br />
+                      &nbsp;&nbsp;<strong>Output:</strong><br />
+                      &nbsp;&nbsp;55<br />
+                      &nbsp;&nbsp;66<br />
+                      </p>
+                    </div>
+                  </p>
+                </li>
+                <li><h4>Test cases</h4>
+                  <div class="left-indent">
+                  <p>
+                    <p><strong>Test case 1:</strong></p>
+                    <p>
+                      &nbsp;&nbsp;<strong>Input file:</strong><br />
+                      &nbsp;&nbsp;1000<br />
+                      &nbsp;&nbsp;1<br />
+                      &nbsp;&nbsp;2<br />
+                      &nbsp;&nbsp;...<br />
+                      &nbsp;&nbsp;1000<br />
+                      &nbsp;&nbsp;1000000<br />
+                      &nbsp;&nbsp;<strong>Output file:</strong><br />
+                      &nbsp;&nbsp;1<br />
+                      &nbsp;&nbsp;3<br />
+                      &nbsp;&nbsp;...<br />
+                      &nbsp;&nbsp;500500<br />
+                      &nbsp;&nbsp;500000500000<br />
+                      </p>
+                      <p><strong>Judge</strong> - Ignoring differences in whitespaces</p>
+                      <p><strong>Time limit</strong> - 1s</p>
+                  </p>
+                  <p>
+                    <p><strong>Test case 2:</strong></p>
+                    <p>
+                      &nbsp;&nbsp;<strong>Input file:</strong><br />
+                      &nbsp;&nbsp;1000000<br />
+                      &nbsp;&nbsp;1<br />
+                      &nbsp;&nbsp;2<br />
+                      &nbsp;&nbsp;...<br />
+                      &nbsp;&nbsp;1000000<br />
+                      &nbsp;&nbsp;<strong>Output file:</strong><br />
+                      &nbsp;&nbsp;1<br />
+                      &nbsp;&nbsp;3<br />
+                      &nbsp;&nbsp;...<br />
+                      &nbsp;&nbsp;500000500000<br />
+                      </p>
+                      <p><strong>Judge</strong> - Ignoring differences in whitespaces</p>
+                      <p><strong>Time limit</strong> - 1s</p>
+                  </p>
+                </div>
+                </li>
+                <li><h4>Master judge</h4>
+                  <div class="left-indent">Score is % of correctly solved sets</div>
+                </li>
+              </ul>
+          </div>
+
+
+      <h2 id="advanced-judges">5. Advanced test case judges</h2>
+        <span class="todo">TODO technical details (file handles structure), real life examples</span>
+
+      <h2 id="advanced-master-judges">6. Advanced master judges</h2>
+        <span class="todo">TODO technical details (file handles structure), real life examples</span>
+
+
+      <h2>Appendix 1: Dictionary</h2>
+
+      <ul>
+        <li><strong>Sphere Engine&trade;</strong> ­ <span class="todo">TODO</span>Platforma do weryfikacji praktycznych umiejętności programistycznych. 
+        Posiada wbudowany zestaw kompilatorów oraz bazę zadań testowych. System pozwala na 
+        automatyczną ocenę nadsyłanych rozwiązań, które dostarczane są w postaci kodów 
+        źródłowych.</li>
+        <li><strong>Sphere Judge&trade;</strong> ­ <span class="todo">TODO</span>Platforma do weryfikacji praktycznych umiejętności programistycznych. 
+        Posiada wbudowany zestaw kompilatorów oraz bazę zadań testowych. System pozwala na 
+        automatyczną ocenę nadsyłanych rozwiązań, które dostarczane są w postaci kodów 
+        źródłowych.</li>
+        <li><strong>Sphere Contest&trade;</strong> ­ <span class="todo">TODO</span>Platforma do weryfikacji praktycznych umiejętności programistycznych. 
+        Posiada wbudowany zestaw kompilatorów oraz bazę zadań testowych. System pozwala na 
+        automatyczną ocenę nadsyłanych rozwiązań, które dostarczane są w postaci kodów 
+        źródłowych.</li>
+        <li><strong>Problem</strong> ­ The challange task for service's users which is the basic element of the service and it contains:
+          <ul>
+            <li><strong>Description</strong> - text explanation of the problem nature along with input/output specification (see more <a href="#problem-specification">problem specification</a>)</li>
+            <li><strong>Test cases</strong> - the sets of input data along with methods of judging (see more <a href="#test-case">test case</a>)</li>
+            <li><strong>Master judge</strong> - the method of final scoring the execution of the submitted solution</li>
+          </ul>
+        </li>
+        <li><strong>Test case</strong> ­ The set of data (usually pair of input file and correct output file) used to verification of the user's submission. It serves as a certificate of the correctness and also contains:
+          <ul>
+            <li><strong>time limit</strong> - the maximum time of the user's solution execution with the data from input file</li>
+            <li><strong>tast case judge</strong> - the program analyses the output generated by user's solution (usually compares user's output with correct output) (see more <a href="#test-case-judge">test case judge</a>, <a href="#advance-test-case-judge">advance test case judge</a>)</li>
+          </ul>
+        </li>
+        <li><strong>Submission</strong> ­ The source code which is potentially the correct solution to the problem.</li>
+        <li><strong>Submission status</strong> - The short information about the user's submission execution. It can be one of the following: <em>accepted</em>, <em>wrong answer</em>, <em>time limit exceeded</em>, <em>run time error</em>, <em>compile error</em> (see more <a href="submission-statuses">submission statuses</a>)</li>
+        <li><strong>Contest</strong> ­ It is the separated part of the platform's set of problems. It contains subscribed users and individual ranking.</li>
+        <li><strong>User</strong> ­ The programmer who has active account on the service.</li>
+        <li><strong>Problem setter</strong> ­ The user of the service with the permissions to create new problems and manage problems which he has created.</li>
+        <li><strong>Manager</strong> ­  The user of the service with the permissions to manage whole service's content.</li>
+        <li><strong>Administrator</strong> ­ The user of the service with full set of permissions.</li>
+      </ul>
+
+      <h2 id="more-about-statuses">Appendix 2: Statuses</h2>
+        <span class="todo">TODO examples ideas and real examples reference to offer</span>
+
+      <h2 id="build-in-features">Appendix 3: Build-in features</h2>
+        <span class="todo">TODO again about build in judges and masterjudges but more precisely with example</span>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+body {
+  margin: 0 20% 50px 20%;
+}
+
+.problem_sourcecode {
+  width: 500px;
+}
+
+.todo {
+  color: red;
+  font-weight: bold;
+}
+
+.centered_image_container {
+	text-align: center;
+	width:100%;
+}
+
+.footnote {
+	font-size: 80%;
+}
+
+.example-box {
+	background-color: #F0F0F0;
+	border: 1px solid;
+	margin: 30px;
+	padding: 30px;
+}
+
+.left-indent {
+	margin-left: 50px;
+}
