@@ -25,7 +25,7 @@ the problem:
  - **Master judge**
 
 
-Before we begin the analysys of the individual components let us take a loot at the complete 
+Before we begin the analysys of the individual components let us take a look at the complete 
 diagram of submission flow to embed the listed components in overall view.
 
 .. image:: ../_static/full_diagram.png
@@ -106,14 +106,18 @@ Referring to the *Integer Power* problem we present how we could compose the exa
 
 .. note::
    **Example 1:**
+   
    **Input:**
    3 4
+   
    **Output:**
    81
             
    **Example 2:**
+   
    **Input:**
    7 0
+   
    **Output:**
    1
       
