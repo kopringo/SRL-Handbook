@@ -1,8 +1,44 @@
 Appendix
 ========
 
-Appendix: Statuses
-------------------
+Good test cases design
+----------------------
+
+It is common misunderstanding which leads to bad test cases design. The number of test cases assigned to the problem is limited to *64*. The individual test case is not intended to test only one problem instance, we recommend you to redesign your input / output specification to handle with multiple problem instances in one test case. Consider the following very elementary problem as an example:
+
+            <div class="example-box">
+               For given integer numbers *a* and *b* calculate the sum *a + b*.
+            </div>
+
+            We could design the input / output specification to calculate the sum only for two numbers:
+
+            <div class="example-box">
+              <p>
+            <strong>Input:</strong> In the only line of the input there will be two integer numbers *a* and *b* separated by a single space character.</p>
+          <p>
+            <strong>Output:</strong> Program should write a single number which is the value of *a + b*.
+          </p>
+            </div>
+
+            <p>It is correct but it is highly not recommended. First of all even *64* test cases cover a small part of the possible problem instances. Secondly, the execution of each test case is time consuming (about *2s* additional time for each test case).</p>
+
+            <p>We recommend to redesign the input / output specification in following manner:</p>
+
+            <div class="example-box">
+          <p>
+            <strong>Input:</strong> In the first line there will be the number *t* which is the number of instances for the problem. In each of the next *t* lines there will be the pair of two numbers *a* and *b* for which you should calculate the value of *a + b*.
+          </p>
+          <p>
+            <strong>Output:</strong> For each *a,b* pair print the calculated sum. Separate answers with new line character.
+          </p>
+            </div>
+
+            <p>As you can see it is possible to pack a large number of problem instance into single test case.</p>            
+
+            <p>Note that multiple test cases should rather be used to test different aspect of the problem.</p>
+
+Statuses
+--------
 
 There are two levels when the status is assigned to the submission:
 
@@ -32,147 +68,143 @@ The Integral error covers wide area of errors thus in the near future we will in
 To ilustrate errors consider again the following example:
 
          <div class="example-box">
-               <p>For a positive integer <em>n</em> calculate the value of the sum of all positive integers that are not greater than <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>. For example when <em>n = 5</em> then the correct answer is <em>15</em>.</p>
+               <p>For a positive integer *n* calculate the value of the sum of all positive integers that are not greater than *n* i.e. *1 + 2 + 3 + ... + n*. For example when *n = 5* then the correct answer is *15*.</p>
           <p>
-            <strong>Input:</strong> In the first line there will be the number <em>1 <= t <= 10000000</em> which is the number of instances for your problem. In each of the next <em>t</em> lines there will be one number <em>n</em> for which you should calculate the described initial sum.
+            <strong>Input:</strong> In the first line there will be the number *1 <= t <= 10000000* which is the number of instances for your problem. In each of the next *t* lines there will be one number *n* for which you should calculate the described initial sum.
           </p>
           <p>
-            <strong>Output:</strong> For each <em>n</em> print the calculated initial sum. Separate answers with new line character.
+            <strong>Output:</strong> For each *n* print the calculated initial sum. Separate answers with new line character.
           </p>
          </div>
 
-         <p>The first error which can occur is the <em>compilation error</em>, for example submitting the following source code would produce the CE status:</p>
+The first error which can occur is the *compilation error*, for example submitting the following source code would produce the CE status:
 
-        <div id="judge-source-code" class="problem_sourcecode">
-<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+.. code-block:: cpp
 
-<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> <span style="color: #0000FF">initsum</span>(<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n)
-{
-  <span style="color: #008000; font-weight: bold">return</span> n<span style="color: #666666">*</span>(n<span style="color: #666666">+1</span>)<span style="color: #666666">/2</span>;
-}
+   #include <stdio.h>
+   
+   long long initsum(long long n)
+   {
+     return n*(n+1)/2;
+   }
+   
+   int main()
+   {
+     int t // missing semicolon
+     long long n;
+     scanf("%d", &t);
+     while (t > 0)
+     {
+       scanf("%lld", &n);
+       printf("%lld\n", initsum(n));
+       t--;
+     }
+     return 0;
+   }
 
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
-{
-  <span style="color: #B00040">int</span> t <span style="color: #408080; font-style: italic">// missing semicolon</span>
-  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n;
-  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>t);
-  <span style="color: #008000; font-weight: bold">while</span> (t <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
-  {
-    scanf(<span style="color: #BA2121">&quot;%lld&quot;</span>, <span style="color: #666666">&amp;</span>n);
-    printf(<span style="color: #BA2121">&quot;%lld</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, initsum(n));
-    t<span style="color: #666666">--</span>;
-  }
-  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
-}
-</pre></div>
-            </div>
+To obtain *execution error* we can refer to unallocated memory:
 
-      <p>To obtain <em>execution error</em> we can refer to unallocated memory:</p>
+.. code-block:: cpp
 
-      <div id="judge-source-code" class="problem_sourcecode">
-<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+   #include <stdio.h>
+   
+   long long initsum(long long n)
+   {
+     return n*(n+1)/2;
+   }
+   
+   int main()
+   {
+     int t;
+     long long n;
+     scanf("%d", &t);
+     while (t > 0)
+     {
+       scanf("%lld", n); // referring to unallocated memory 
+       printf("%lld\n", initsum(n));
+       t--;
+     }
+     return 0;
+   }
 
-<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> <span style="color: #0000FF">initsum</span>(<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n)
-{
-  <span style="color: #008000; font-weight: bold">return</span> n<span style="color: #666666">*</span>(n<span style="color: #666666">+1</span>)<span style="color: #666666">/2</span>;
-}
+We will *exceed time limit* with worse algorithm (if test cases are rich enough):
 
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
-{
-  <span style="color: #B00040">int</span> t;
-  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n;
-  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>t);
-  <span style="color: #008000; font-weight: bold">while</span> (t <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
-  {
-    scanf(<span style="color: #BA2121">&quot;%lld&quot;</span>, n); <span style="color: #408080; font-style: italic">// referring to unallocated memory </span>
-    printf(<span style="color: #BA2121">&quot;%lld</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, initsum(n));
-    t<span style="color: #666666">--</span>;
-  }
-  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
-}
-</pre></div>
-      </div>
+.. code-block:: cpp
 
-      <p>We will <em>exceed time limit</em> with worse algorithm (if test cases are rich enough):</p>
+   #include <stdio.h>
+   
+   // suboptimal algorithm
+   long long initsum(long long n)
+   {
+     int i;
+     long long sum = 0;
+     for (i=1; i <= n; i++)
+     {
+       sum += i;
+     }
+     return sum;
+   }
+   
+   int main()
+   {
+     int t;
+     long long n;
+     scanf("%d", &t);
+     while (t > 0)
+     {
+       scanf("%lld", &n);
+       printf("%lld\n", initsum(n));
+       t--;
+     }
+     return 0;
+   }
 
-      <div id="judge-source-code" class="problem_sourcecode">
-<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+Bad output formatting causes *wrong answer* status:
 
-<span style="color: #408080; font-style: italic">// suboptimal algorithm</span>
-<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> <span style="color: #0000FF">initsum</span>(<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n)
-{
-  <span style="color: #B00040">int</span> i;
-  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
-  <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=1</span>; i <span style="color: #666666">&lt;=</span> n; i<span style="color: #666666">++</span>)
-  {
-    sum <span style="color: #666666">+=</span> i;
-  }
-  <span style="color: #008000; font-weight: bold">return</span> sum;
-}
+.. code-block:: cpp
 
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
-{
-  <span style="color: #B00040">int</span> t;
-  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n;
-  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>t);
-  <span style="color: #008000; font-weight: bold">while</span> (t <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
-  {
-    scanf(<span style="color: #BA2121">&quot;%lld&quot;</span>, <span style="color: #666666">&amp;</span>n);
-    printf(<span style="color: #BA2121">&quot;%lld</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, initsum(n));
-    t<span style="color: #666666">--</span>;
-  }
-  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
-}
-</pre></div>
-      </div>
+   #include <stdio.h>
 
-      <p>Bad output formatting causes <em>wrong answer</em> status:</p>
+   long long initsum(long long n)
+   {
+     return n*(n+1)/2;
+   }
+   
+   int main()
+   {
+     int t;
+     long long n;
+     scanf("%d", &t);
+     while (t > 0)
+     {
+       scanf("%lld", &n);
+       printf("%lld", initsum(n)); // missing new line character
+       t--;
+     }
+     return 0;
+   }
 
-      <div id="judge-source-code" class="problem_sourcecode">
-<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+At the end we present correct and optimal solution which passes all test cases and obtains *accepted* status:
 
-<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> <span style="color: #0000FF">initsum</span>(<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n)
-{
-  <span style="color: #008000; font-weight: bold">return</span> n<span style="color: #666666">*</span>(n<span style="color: #666666">+1</span>)<span style="color: #666666">/2</span>;
-}
+.. code-block:: cpp
 
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
-{
-  <span style="color: #B00040">int</span> t;
-  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n;
-  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>t);
-  <span style="color: #008000; font-weight: bold">while</span> (t <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
-  {
-    scanf(<span style="color: #BA2121">&quot;%lld&quot;</span>, <span style="color: #666666">&amp;</span>n);
-    printf(<span style="color: #BA2121">&quot;%lld&quot;</span>, initsum(n)); <span style="color: #408080; font-style: italic">// missing new line character</span>
-    t<span style="color: #666666">--</span>;
-  }
-  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
-}
-</pre></div>
-      </div>
-
-      <p>At the end we present correct and optimal solution which passes all test cases and obtains <em>accepted</em> status:</p>
-
-      <div id="judge-source-code" class="problem_sourcecode">
-<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
-
-<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> <span style="color: #0000FF">initsum</span>(<span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n)
-{
-  <span style="color: #008000; font-weight: bold">return</span> n<span style="color: #666666">*</span>(n<span style="color: #666666">+1</span>)<span style="color: #666666">/2</span>;
-}
-
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
-{
-  <span style="color: #B00040">int</span> t;
-  <span style="color: #B00040">long</span> <span style="color: #B00040">long</span> n;
-  scanf(<span style="color: #BA2121">&quot;%d&quot;</span>, <span style="color: #666666">&amp;</span>t);
-  <span style="color: #008000; font-weight: bold">while</span> (t <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
-  {
-    scanf(<span style="color: #BA2121">&quot;%lld&quot;</span>, <span style="color: #666666">&amp;</span>n);
-    printf(<span style="color: #BA2121">&quot;%lld</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, initsum(n));
-    t<span style="color: #666666">--</span>;
-  }
-  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
-}
-</pre>
+   #include <stdio.h>
+   
+   long long initsum(long long n)
+   {
+     return n*(n+1)/2;
+   }
+   
+   int main()
+   {
+     int t;
+     long long n;
+     scanf("%d", &t);
+     while (t > 0)
+     {
+       scanf("%lld", &n);
+       printf("%lld\n", initsum(n));
+       t--;
+     }
+     return 0;
+   }

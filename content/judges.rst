@@ -1,13 +1,10 @@
 Judges
 ======
 
-5. Build-in judges and master judges
-------------------------------------
-
 We have mentioned that the problem setter can choose from default test cases judges and master judges. In practice it is usually enough.
 
-Test case judes
-~~~~~~~~~~~~~~~
+Test case judges
+----------------
 
 There are five default test case judges:
 
@@ -54,8 +51,8 @@ There are five default test case judges:
    For example consider the problem of determining first *n* numbers in decimal expansion of the 
    number &pi; for given *n*. The challange is to solve that problem with the shortest possible source code.
 
-Master judes
-~~~~~~~~~~~~
+Master judges
+-------------
 
 We have two default master judges both were described in section <a href="#problems">problems
 
@@ -99,15 +96,14 @@ In the previous section we have discussed default test case judges which are suf
 However there are problems which require individual solutions due to nature of the problem. In this section 
 we present examples of the problems along with descriptions of test case judges.
 
-        <p>Test case judge has access to the following information:</p>
-        <ul>
-         <li>model input</li>
-         <li>model output</li>
-         <li>user's output</li>
-         <li>user's source code</li>
-        </ul>
+Test case judge has access to the following information:
+ - model input
+ - model output
+ - user's output
+ - user's source code
 
-        <h3>Impossible model output file</h3>
+Impossible model output file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
          <p>Consider following problem task:</p>
 
@@ -149,7 +145,7 @@ brand new one. In this section we present examples of the master judges along wi
 
         <p>Master judge has access to the following information:</p>
         <ul>
-         <li>results from test case judes</li>
+         <li>results from test case judges</li>
          <li>user's source code</li>
         </ul>
 
