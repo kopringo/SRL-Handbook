@@ -16,6 +16,7 @@ Contents:
    content/introduction.rst
    
    content/problems.rst
+   content/submissions.rst
    content/judges.rst
    
    content/appendix.rst
