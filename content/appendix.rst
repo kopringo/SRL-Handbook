@@ -1,6 +1,8 @@
 Appendix
 ========
 
+.. _appendix-good-test-cases-design:
+
 Good test cases design
 ----------------------
 
@@ -36,6 +38,8 @@ It is common misunderstanding which leads to bad test cases design. The number o
             <p>As you can see it is possible to pack a large number of problem instance into single test case.</p>            
 
             <p>Note that multiple test cases should rather be used to test different aspect of the problem.</p>
+
+.. _appendix-statuses:
 
 Statuses
 --------

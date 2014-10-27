@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Appendix &mdash; Sphere Engine handbook 1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Sphere Engine handbook 1 documentation" href="../index.html"/>
+        <link rel="prev" title="Judges" href="judges.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Sphere Engine handbook</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dictionary.html">Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#manual-verification">Manual verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#automatic-verification">Automatic verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="problems.html">Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#test-case-s">Test case(s)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#master-judge">Master judge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#complete-example">Complete example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="submissions.html">Submissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="submissions.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="judges.html">Judges</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#test-case-judges">Test case judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#master-judges">Master judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#advanced-test-case-judges">Advanced test case judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#advanced-master-judges">Advanced master judges</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#good-test-cases-design">Good test cases design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#statuses">Statuses</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Sphere Engine handbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Appendix</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/content/appendix.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="good-test-cases-design">
+<h2>Good test cases design<a class="headerlink" href="#good-test-cases-design" title="Permalink to this headline">¶</a></h2>
+<p>It is common misunderstanding which leads to bad test cases design. The number of test cases assigned to the problem is limited to <em>64</em>. The individual test case is not intended to test only one problem instance, we recommend you to redesign your input / output specification to handle with multiple problem instances in one test case. Consider the following very elementary problem as an example:</p>
+<blockquote>
+<div><blockquote>
+<div><dl class="docutils">
+<dt>&lt;div class=&#8221;example-box&#8221;&gt;</dt>
+<dd>For given integer numbers <em>a</em> and <em>b</em> calculate the sum <em>a + b</em>.</dd>
+</dl>
+<p>&lt;/div&gt;</p>
+<p>We could design the input / output specification to calculate the sum only for two numbers:</p>
+<dl class="docutils">
+<dt>&lt;div class=&#8221;example-box&#8221;&gt;</dt>
+<dd>&lt;p&gt;</dd>
+</dl>
+<p>&lt;strong&gt;Input:&lt;/strong&gt; In the only line of the input there will be two integer numbers <em>a</em> and <em>b</em> separated by a single space character.&lt;/p&gt;</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>&lt;p&gt;</dt>
+<dd>&lt;strong&gt;Output:&lt;/strong&gt; Program should write a single number which is the value of <em>a + b</em>.</dd>
+<dt>&lt;/p&gt;</dt>
+<dd><p class="first">&lt;/div&gt;</p>
+<p>&lt;p&gt;It is correct but it is highly not recommended. First of all even <em>64</em> test cases cover a small part of the possible problem instances. Secondly, the execution of each test case is time consuming (about <em>2s</em> additional time for each test case).&lt;/p&gt;</p>
+<p>&lt;p&gt;We recommend to redesign the input / output specification in following manner:&lt;/p&gt;</p>
+<p class="last">&lt;div class=&#8221;example-box&#8221;&gt;</p>
+</dd>
+<dt>&lt;p&gt;</dt>
+<dd>&lt;strong&gt;Input:&lt;/strong&gt; In the first line there will be the number <em>t</em> which is the number of instances for the problem. In each of the next <em>t</em> lines there will be the pair of two numbers <em>a</em> and <em>b</em> for which you should calculate the value of <em>a + b</em>.</dd>
+</dl>
+<p>&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div>&lt;strong&gt;Output:&lt;/strong&gt; For each <em>a,b</em> pair print the calculated sum. Separate answers with new line character.</div></blockquote>
+<dl class="docutils">
+<dt>&lt;/p&gt;</dt>
+<dd><p class="first">&lt;/div&gt;</p>
+<p>&lt;p&gt;As you can see it is possible to pack a large number of problem instance into single test case.&lt;/p&gt;</p>
+<p class="last">&lt;p&gt;Note that multiple test cases should rather be used to test different aspect of the problem.&lt;/p&gt;</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="statuses">
+<h2>Statuses<a class="headerlink" href="#statuses" title="Permalink to this headline">¶</a></h2>
+<p>There are two levels when the status is assigned to the submission:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>test case</strong> the status produced by the test case judge</li>
+<li><strong>master judge</strong></li>
+</ul>
+</div></blockquote>
+<p>The master judge is a high order level component and it can arbitrary assign any status to
+the submission. We are going to focus on the test case judge statuses.</p>
+<p>We separate statuses into two groups: semantic and systemic. The semantic statuses are
+strictly related to the correctness of the answer to the problem. On the other hand,
+the systemic statuses are syntactic related and the judge gets it from the system.</p>
+<dl class="docutils">
+<dt><strong>Semantic statuses</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>Accepted (AC)</strong> the submission is a correct solution to the problem.</li>
+<li><strong>Wrong answer (WA)</strong> the submission is an incorrect solution.</li>
+</ul>
+</dd>
+<dt><strong>Sytemic statuses</strong></dt>
+<dd><ul class="first last simple">
+<li>Time limit exceeded (TLE): the submission execution took too long.</li>
+<li>Runtime error (RE): the error occurred during program execution.</li>
+<li>Compilation error (CE): the error occurred during compilation or syntax validation in interpreter.</li>
+<li>Internal error (IE): the error occurred on the serivice side. One of the possible reasons can be poorly designed test case judge or master judge.</li>
+</ul>
+</dd>
+</dl>
+<p>The Integral error covers wide area of errors thus in the near future we will introduce another type of error for judge and master judge errors.</p>
+<p>To ilustrate errors consider again the following example:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;div class=&#8221;example-box&#8221;&gt;</dt>
+<dd><blockquote class="first">
+<div>&lt;p&gt;For a positive integer <em>n</em> calculate the value of the sum of all positive integers that are not greater than <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>. For example when <em>n = 5</em> then the correct answer is <em>15</em>.&lt;/p&gt;</div></blockquote>
+<dl class="docutils">
+<dt>&lt;p&gt;</dt>
+<dd>&lt;strong&gt;Input:&lt;/strong&gt; In the first line there will be the number <em>1 &lt;= t &lt;= 10000000</em> which is the number of instances for your problem. In each of the next <em>t</em> lines there will be one number <em>n</em> for which you should calculate the described initial sum.</dd>
+</dl>
+<p>&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div>&lt;strong&gt;Output:&lt;/strong&gt; For each <em>n</em> print the calculated initial sum. Separate answers with new line character.</div></blockquote>
+<p class="last">&lt;/p&gt;</p>
+</dd>
+</dl>
+<p>&lt;/div&gt;</p>
+</div></blockquote>
+<p>The first error which can occur is the <em>compilation error</em>, for example submitting the following source code would produce the CE status:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">initsum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">t</span> <span class="c1">// missing semicolon</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initsum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To obtain <em>execution error</em> we can refer to unallocated memory:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">initsum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// referring to unallocated memory</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initsum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We will <em>exceed time limit</em> with worse algorithm (if test cases are rich enough):</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="c1">// suboptimal algorithm</span>
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">initsum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initsum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Bad output formatting causes <em>wrong answer</em> status:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">initsum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="n">initsum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span> <span class="c1">// missing new line character</span>
+    <span class="n">t</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>At the end we present correct and optimal solution which passes all test cases and obtains <em>accepted</em> status:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">initsum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initsum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="judges.html" class="btn btn-neutral" title="Judges"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Sphere Research Team.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/"dupa%3dpies""></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
