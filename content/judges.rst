@@ -1,3 +1,5 @@
+.. _judges-normal:
+
 Judges
 ======
 
@@ -51,6 +53,8 @@ There are five default test case judges:
    For example consider the problem of determining first *n* numbers in decimal expansion of the 
    number &pi; for given *n*. The challange is to solve that problem with the shortest possible source code.
 
+.. _master-judges-normal:
+
 Master judges
 -------------
 
@@ -88,6 +92,7 @@ We have two default master judges both were described in section <a href="#probl
    test and achieve the result of *66%*. To achieve the best result of *100%* the solution needs to implement 
    both big numbers and fast power algorithms to pass all three test cases.
         
+.. _judges-advanced:
         
 Advanced test case judges
 -------------------------
@@ -135,6 +140,7 @@ Impossible model output file
 
          <p><strong>Remark</strong> It can be problematic to keep all answers due to possible huge number of good solutions.</p>
 
+.. _master-judges-advanced:
 
 Advanced master judges
 ----------------------

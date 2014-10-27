@@ -38,6 +38,11 @@ we call it the *Initital sum* problem. We are going to preper it to handle with 
 input instances in a single test case by proper input / output specification design. 
 Look at the following problem description:
 
+.. admonition:: Example
+  :class: note
+
+   You can make up your own admonition too.
+
 
         <div class="example-box">
           <p>For a positive integer *n* calculate the value of the sum of all positive integers that are not greater than *n* i.e. *1 + 2 + 3 + ... + n*. For example when *n = 5* then the correct answer is *15*.</p>

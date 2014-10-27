@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Submissions &mdash; Sphere Engine handbook 1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Sphere Engine handbook 1 documentation" href="../index.html"/>
+        <link rel="next" title="Judges" href="judges.html"/>
+        <link rel="prev" title="Problems" href="problems.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Sphere Engine handbook</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dictionary.html">Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#manual-verification">Manual verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#automatic-verification">Automatic verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="problems.html">Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#test-case-s">Test case(s)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#master-judge">Master judge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html#complete-example">Complete example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Submissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="judges.html">Judges</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#test-case-judges">Test case judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#master-judges">Master judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#advanced-test-case-judges">Advanced test case judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#advanced-master-judges">Advanced master judges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#good-test-cases-design">Good test cases design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#statuses">Statuses</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Sphere Engine handbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Submissions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/content/submissions.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="submissions">
+<h1>Submissions<a class="headerlink" href="#submissions" title="Permalink to this headline">¶</a></h1>
+<p>Ultimately, for a full understanding of the diagram let as briefly comment possible
+statuses which can be assigned to the submission.</p>
+<dl class="docutils">
+<dt><strong>Accepted (AC)</strong></dt>
+<dd>the submission is a correct solution to the problem.</dd>
+<dt><strong>Wrong answer (WA)</strong></dt>
+<dd>the submission is incorrect solution. It depends on master judge implementation.</dd>
+<dt><strong>Time limit exceeded (TLE)</strong></dt>
+<dd>the submission execution took to long. Again it depends on master judge implementation.</dd>
+<dt><strong>Runtime error (RE)</strong></dt>
+<dd>the error occurred during program execution.</dd>
+<dt><strong>Compilation error (CE)</strong></dt>
+<dd>the error occurred during compilation or syntax validation in interpreter.</dd>
+<dt><strong>Internal error (IE)</strong></dt>
+<dd>the error occurred on the serivice side. One of the possible reasons can be poorly
+designed test case judge or master judge.</dd>
+</dl>
+<p>More information along with examples of problems and source codes can be found in appendix &lt;a href=&#8221;more-about-statuses&#8221;&gt;statuses&lt;/a&gt;.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>In this section we present more complicated example with full details to give you
+better overall look at abilities of our services. It is still an elementary example
+but it will tell you much more about the specific of online judging.</p>
+<p>The problem is to count the sum of numbers from <em>1</em> to given <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>,
+we call it the <em>Initital sum</em> problem. We are going to preper it to handle with multiple
+input instances in a single test case by proper input / output specification design.
+Look at the following problem description:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;div class=&#8221;example-box&#8221;&gt;</dt>
+<dd><p class="first">&lt;p&gt;For a positive integer <em>n</em> calculate the value of the sum of all positive integers that are not greater than <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>. For example when <em>n = 5</em> then the correct answer is <em>15</em>.&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div>&lt;strong&gt;Input:&lt;/strong&gt; In the first line there will be the number <em>1 &lt;= t &lt;= 10000000</em> which is the number of instances for your problem. In each of the next <em>t</em> lines there will be one number <em>n</em> for which you should calculate the described initial sum.</div></blockquote>
+<p>&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div>&lt;strong&gt;Output:&lt;/strong&gt; For each <em>n</em> print the calculated initial sum. Separate answers with new line character.</div></blockquote>
+<p>&lt;/p&gt;</p>
+<blockquote class="last">
+<div>&lt;p&gt;
+&lt;strong&gt;Example 1:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;4&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;4&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;6&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;10&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;strong&gt;Example 2:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;10&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;11&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;55&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;66&lt;br /&gt;
+&lt;/p&gt;</div></blockquote>
+</dd>
+</dl>
+<p>&lt;/div&gt;</p>
+<p>&lt;p&gt;Note that the input specification allows us to construct rich test cases which are able to distinguis between faster and slower solutions.&lt;/p&gt;</p>
+<p>&lt;p&gt;Referring to the solution take into account that the possible input data can be too big for the standard <em>int</em> type thus we will use the <em>long long</em> type. Before we set test cases let us present two distinct solutions to the problem:&lt;/p&gt;</p>
+</div></blockquote>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">initsum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initsum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first solution directly refers to the definition of the problem i.e. the function <em>initsum</em> iterates from <em>1</em> to <em>n</em> to calculate desired value. The calculation requires <em>n</em> operations of addition to obtain the result.</p>
+<p>It is basic school knowledge that there exists the compact formula for that problem and we use it in the second implementation:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">initsum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initsum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Both programs are correct answer to the problem but if we want to distinguish the algorithms we can design test cases that only the second solution can pass. As we mentioned before it highly depends on the computational power of the machine. We present test cases that are valid for the computer of this text&#8217;s author. Our suggestion is to design one test case which is easy to pass for both algorithms to give information that the solution is correct and the second test case that is possible to pass only for the second algorithm. It can give an information to the user, that his solution is correct but too slow. The user submitting solution similar to the first one will get information about test cases and will be able to see that his program passes first test case and exceed time limit in the second test case.</p>
+<p>We cannot put all input and output data here because of its size thus we write it in shortened manner:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;div class=&#8221;example-box&#8221;&gt;</dt>
+<dd>&lt;p&gt;
+&lt;strong&gt;Test case 1:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;500500&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;500000500000&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;strong&gt;Test case 2:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;500000500000&lt;br /&gt;
+&lt;/p&gt;</dd>
+</dl>
+<p>&lt;/div&gt;</p>
+<p>&lt;p&gt;Computational power of current machines is enough to finish first test case instantly. Both presented algorithms finished computations with time below <em>0.01s</em>. However it is a good test case for a corectness verification only. First <em>1000</em> positive integers give us the assurance that solution is mathematically correct. We have also added single test with big number i.e. <em>n = 1000000</em> to make sure that user&#8217;s solution bases on <em>long long</em> type. On the other hand the second test case is rich enough to make the first algorithm to exceed even <em>5s</em> time limit. The second algorithm works fast enough to pass that test case in time below <em>0.1s</em>. We have huge gap between <em>0.1s</em> and <em>5s</em> thus we can easily choose safe value as our time limit, for example again <em>1s</em>.&lt;/p&gt;</p>
+<p>&lt;p&gt;We still haven&#8217;t chosen judges for test cases and master judge for the problem. We don&#8217;t have floating point numbers in our output file specification thus we rather decide to choose <em>Ignoring differences in whitespaces</em> judge for both test cases. It leaves users with possiblity of small formating errors without risk of unwanted rejections of theirs solutions. For example it is possible to replace new line characters with spaces in output formatting and still pass the test case.&lt;/p&gt;</p>
+<p>&lt;p&gt;We assume that we want to accept every correct solution but distinguish the better ones and give them a better score. The <em>Score is % of correctly solved sets</em> master judge is perfect for that purpose. Submitting the first solution achieves the result of <em>50%</em> while the second solution passes both test cases and its result is <em>100%</em>.&lt;/p&gt;</p>
+<p>&lt;p&gt;&lt;strong&gt;Remark.&lt;/strong&gt; Presented scoring method assumed both tests as equally worth <em>50%</em> each. To achieve different distribution of scores you need to modify the master judge and pick the scoring of test cases arbitrary. We present the example in the section &lt;a href=&#8221;advanced-master-judges&#8221;&gt;advanced master judges&lt;/a&gt;.&lt;/p&gt;</p>
+<p>&lt;p&gt;To sum up we present full problem specification:&lt;/p&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;div class=&#8221;example-box&#8221;&gt;</dt>
+<dd><p class="first">&lt;h3 align=&#8221;center&#8221;&gt;The Initial Sum&lt;/h3&gt;
+&lt;p&gt;</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>&lt;ul&gt;</dt>
+<dd><dl class="first last docutils">
+<dt>&lt;li&gt;&lt;h4&gt;Description&lt;/h4&gt;</dt>
+<dd><p class="first">&lt;p&gt;For a positive integer <em>n</em> calculate the value of the sum of all positive integers that are not greater than <em>n</em> i.e. <em>1 + 2 + 3 + ... + n</em>. For example when <em>n = 5</em> then the correct answer is <em>15</em>.&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div><p>&lt;strong&gt;Input / output specification:&lt;/strong&gt;
+&lt;div class=&#8221;left-indent&#8221;&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;p&gt;</dt>
+<dd>&lt;strong&gt;Input:&lt;/strong&gt; In the first line there will be the number <em>1 &lt;= t &lt;= 10000000</em> which is the number of instances for your problem. In each of the next <em>t</em> lines there will be one number <em>n</em> for which you should calculate the described initial sum.</dd>
+</dl>
+<p>&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div>&lt;strong&gt;Output:&lt;/strong&gt; For each <em>n</em> print the calculated initial sum. Separate answers with new line character.</div></blockquote>
+<p>&lt;/p&gt;</p>
+</div></blockquote>
+<p>&lt;/div&gt;</p>
+</div></blockquote>
+<p class="last">&lt;/p&gt;
+&lt;p&gt;</p>
+</dd>
+</dl>
+</dd>
+<dt>&lt;strong&gt;Examples:&lt;/strong&gt;</dt>
+<dd><blockquote class="first">
+<div><dl class="docutils">
+<dt>&lt;div class=&#8221;left-indent&#8221;&gt;</dt>
+<dd><blockquote class="first">
+<div>&lt;p&gt;
+&lt;strong&gt;Example 1:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;4&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;4&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;6&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;10&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;strong&gt;Example 2:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;10&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;11&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;55&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;66&lt;br /&gt;
+&lt;/p&gt;</div></blockquote>
+<p class="last">&lt;/div&gt;</p>
+</dd>
+</dl>
+<p>&lt;/p&gt;</p>
+</div></blockquote>
+<p>&lt;/li&gt;
+&lt;li&gt;&lt;h4&gt;Test cases&lt;/h4&gt;</p>
+<blockquote>
+<div><p>&lt;div class=&#8221;left-indent&#8221;&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div><p>&lt;p&gt;&lt;strong&gt;Test case 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div>&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;500500&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;500000500000&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Judge&lt;/strong&gt; - Ignoring differences in whitespaces&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Time limit&lt;/strong&gt; - 1s&lt;/p&gt;</div></blockquote>
+</div></blockquote>
+<p>&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div><p>&lt;p&gt;&lt;strong&gt;Test case 2:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;</p>
+<blockquote>
+<div>&amp;nbsp;&amp;nbsp;&lt;strong&gt;Input file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;2&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1000000&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&lt;strong&gt;Output file:&lt;/strong&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;3&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;...&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;500000500000&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Judge&lt;/strong&gt; - Ignoring differences in whitespaces&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Time limit&lt;/strong&gt; - 1s&lt;/p&gt;</div></blockquote>
+</div></blockquote>
+<p>&lt;/p&gt;</p>
+</div></blockquote>
+<p>&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;h4&gt;Master judge&lt;/h4&gt;</p>
+<blockquote>
+<div>&lt;div class=&#8221;left-indent&#8221;&gt;Score is % of correctly solved sets&lt;/div&gt;</div></blockquote>
+<p class="last">&lt;/li&gt;</p>
+</dd>
+</dl>
+<p>&lt;/ul&gt;</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>&lt;/div&gt;</p>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="judges.html" class="btn btn-neutral float-right" title="Judges">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="problems.html" class="btn btn-neutral" title="Problems"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Sphere Research Team.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/"dupa%3dpies""></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -260,3 +260,9 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+rst_epilog = """
+.. |_| unicode:: 0xA0 
+   :trim:
+.. |le|       unicode:: U+02264 .. LESS-THAN OVER EQUAL TO
+"""

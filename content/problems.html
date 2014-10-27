@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Problems &mdash; Sphere Engine handbook 1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Sphere Engine handbook 1 documentation" href="../index.html"/>
+        <link rel="next" title="Submissions" href="submissions.html"/>
+        <link rel="prev" title="Introduction" href="introduction.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Sphere Engine handbook</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dictionary.html">Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#manual-verification">Manual verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#automatic-verification">Automatic verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-case-s">Test case(s)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#master-judge">Master judge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-example">Complete example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="submissions.html">Submissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="submissions.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="judges.html">Judges</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#test-case-judges">Test case judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#master-judges">Master judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#advanced-test-case-judges">Advanced test case judges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="judges.html#advanced-master-judges">Advanced master judges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#good-test-cases-design">Good test cases design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#statuses">Statuses</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Sphere Engine handbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Problems</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/content/problems.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="problems">
+<h1>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">¶</a></h1>
+<p>In this section we are going to give you insight into submission flow and online judge problem
+construction. From the previous section we know basics of the concept of the online judging.</p>
+<p>To better understand and make it possible to create own problems we will describe components of
+the problem:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Description</strong><ul>
+<li>The task</li>
+<li>Input / output specification</li>
+<li>Input / output examples</li>
+</ul>
+</li>
+<li><strong>Test case(s)</strong> (possibly many)<ul>
+<li>Input file,</li>
+<li>Output file</li>
+<li>Time limit</li>
+<li>Judge</li>
+</ul>
+</li>
+<li><strong>Master judge</strong></li>
+</ul>
+</div></blockquote>
+<p>Before we begin the analysys of the individual components let us take a look at the complete
+diagram of submission flow to embed the listed components in overall view.</p>
+<a class="reference internal image-reference" href="../_images/full_diagram.png"><img alt="Full submission flow diagram" class="align-center" src="../_images/full_diagram.png" style="width: 700px;" /></a>
+<p>The diagram is the extension of the one from the previous section. The main difference is the
+appearance of the <em>master judge</em> component. Since we have introduced possibility of many test
+cases (input, output and judge) thus we need the summary component to combine the results from
+test case judges - we call that summary component <em>master judge</em>.</p>
+<p>The other new elements of the
+diagram was mentally present before but we purposely omited them to keep the previous view as
+simple as possible.</p>
+<p>Now we can explain that every submission needs to have precised
+<em>programming language</em> to choose proper compiler or interpreter. The problem description is the
+crucial part for users to make it possible to solve the problem.</p>
+<p>Now let us recall the <em>Integer Power</em> problem since we are going to use it as a demonstration
+example. The task described in the problem is to compute the value of <em>a&lt;sup&gt;b&lt;/sup&gt;</em> for given
+integers <em>a</em> and <em>b</em></p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>User must be able to understand the problem to solve it successfully. Description contains
+complete information needed to solve the problem thus it is the most important feature from
+the user&#8217;s point of view.</p>
+<p><strong>The task</strong>
+The formal text that describes the specificity of the problem usually in mathematical manner.
+To achieve good quality of the description it is a good habit to graphically illustrate the
+problem. It is also desirable to support a dry theory with simple examples.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>According to the <em>Integer Power</em> problem we could write the taks as follows:</p>
+<p class="last">Write the program which takes two numbers <em>a</em> and <em>b</em> and returns the value of <em>a&lt;sup&gt;b&lt;/sup&gt;</em>.
+For example for <em>a = 3</em> and <em>b = 4</em> the result is <em>3^4 = 81</em></p>
+</div>
+<p><strong>Input / output specification</strong></p>
+<p>The previous part was formal from the mathematical perspective but not syntactically. Automatic
+judging is only possible when we can make an assumption on the problems&#8217;s input and output behaviour.
+The interior of the user&#8217;s program is a black box for us right now. We specify what is the input file
+structure to make it possible for users to implement proper input reading. The specification of input
+file should be an information that user can rely on.</p>
+<p>On the other hand we expect that user produces output file with a predictable structure. Formal
+specification of the output file is an information that we are going to rely on to verify the correctness
+of the submission.</p>
+<p>Referring to the <em>Integer Power</em> problem let us recall &lt;a href=&#8221;#judge-source-code&#8221;&gt;possible solution&lt;/a&gt;
+of the problem. We didn&#8217;t specify any formal input or output syntax in the previous section. First attempt
+was the solution with the human readable interface and after that we modified the code to achieve a raw
+version. We can use that source code as a base for following formal specification:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt><strong>Input</strong></dt>
+<dd>In the only line of the input there will be two integer numbers <em>1 &lt;= a &lt;= 8</em> and <em>0 &lt;= b &lt;= 10</em>
+separated by a single space character.&lt;/p&gt;</dd>
+<dt><strong>Output</strong></dt>
+<dd>Program should write a single number which is a value of <em>a&lt;sup&gt;b&lt;/sup&gt;</em>.</dd>
+</dl>
+</div>
+<p><strong>Input / output examples</strong>
+In the task subsection we mentioned that it is a good habit to ilustrate the problem with the examples.
+The examples here are dedicated to ilustrate the input and output files structure. In the best case scenario
+they cover every distinct configuration of parameters (up to numbers, letters etc.) which is important for
+more complex problems.</p>
+<p>Referring to the <em>Integer Power</em> problem we present how we could compose the examples:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>Example 1:</strong></p>
+<p><strong>Input:</strong>
+3 4</p>
+<p><strong>Output:</strong>
+81</p>
+<p><strong>Example 2:</strong></p>
+<p><strong>Input:</strong>
+7 0</p>
+<p class="last"><strong>Output:</strong>
+1</p>
+</div>
+</div>
+<div class="section" id="test-case-s">
+<h2>Test case(s)<a class="headerlink" href="#test-case-s" title="Permalink to this headline">¶</a></h2>
+<p>Just as the description was for users only so the test cases are for the machine checker.
+This is the essence of the automatic judging idea. The vast majority of the usages implements
+the following schema: there is a model input paired to a model output along with the program
+which can compare that model output with the user&#8217;s output to decide whether user&#8217;s answer is
+good or not.</p>
+<p><strong>Input and output files</strong>
+Input file contains the problem instance and it must be consistent with the input specification.
+The output file should contain corresponding correct answers formatted in accordance to the
+output specification.</p>
+<p>of the correct program should be contained in the output file. It is not necessery to write the
+solution to the program to create the output file - it can be obtained in any manner.</p>
+<p>According to the <em>Integer Power</em> problem we present how we could prepare following test cases:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>Test case 1:</strong>
+<strong>Input file:</strong>
+3 4
+<strong>Output file:</strong>
+81</p>
+<p class="last"><strong>Test case 2:</strong>
+<strong>Input file:</strong>
+7 0
+<strong>Output file:</strong>
+1</p>
+</div>
+<p><strong>Remark.</strong> It is recomended to construct the problems that are able to repeat the desired procedure
+as many times as we want to make it possible to test the user&#8217;s submission with one test case.
+There are many reasons for that approach and for further information please visit
+&lt;a href=&#8221;#good-test-cases-design&#8221;&gt;good test cases design&lt;/a&gt; appendix.&lt;/p&gt;</p>
+<p><strong>Time limit</strong>
+We have already pointed that one of the features of online judging is the possiblity of estimating
+the time complexity. To achieve that the author of the problem has to adjust the timeout for program
+execution. Consider the case when the author knows two different algorithms for a problem, say <em>A</em> and <em>B</em>.
+Let us assume that the algorithm <em>A</em> is noticeably faster than the algorithm <em>B</em>. It is not very
+easy and obvious how to preper test cases to distinguish between these two algorithms. However,
+assuming that we have input data which is processed in the time <em>t&lt;sub&gt;A&lt;/sub&gt;</em> for the algorithm <em>A</em>
+which is much faster than execution time <em>t&lt;sub&gt;B&lt;/sub&gt;</em> for the algorithm <em>B</em> we can simply set the
+time limit somewhere between those values.&lt;/p&gt;</p>
+<p>With the timeout <em>t&lt;sub&gt;A&lt;/sub&gt; &lt;= t&lt;sub&gt;0&lt;/sub&gt; &lt;= t&lt;sub&gt;B&lt;/sub&gt;</em> we can assume that <em>A</em>-like algorithms
+will pass the test case and <em>B</em>-like algorithms will fail it due to exceeding the time limit.</p>
+<p><strong>Remark.</strong> Note that the presented approach highly depends on the machine thus you need to adjust your
+time limit to the computing cluster rather then your local machine.</p>
+<p>Our toy example problem is much too simple in assumptions to allow us to present example of time limits
+that distinguish different algorithms thus we put default time limit of <em>1s</em>. In the next section we present
+more complex example where we further discuss the time limit which can help to estimate the algorithm quality.</p>
+<p><strong>Judge</strong>
+The judge is a program which process user&#8217;s output file after execution. Its task is to establish if the
+submission passed the test case and potentially also returns <em>the score</em>. When the user&#8217;s program pass the
+test case the returned status is <em>&#8220;accepted&#8221;</em>.</p>
+<p>Usually the judge implementation is reduced to compare the model output file with the user&#8217;s output file.
+We support problem setters with default judges:
+- <strong>Strict</strong> - it requires output files to be identical
+- <strong>Ignoring differences in whitespaces</strong> - similar to the previous one but it ignores all extra whitespaces
+- &#8220;&#8221;Ignoring floating point errors up to a specific position** - it allows the floating point numbers to be</p>
+<blockquote>
+<div>inaccurate i.e. we can accept the errors up to for example <em>0.001</em></div></blockquote>
+<p><strong>Remark.</strong> The <em>Ignoring differences in whitespaces</em> judge is one of the most popular default choice. It is
+more liberal for output formating errors which in fact doesn&#8217;t affect on the solution semantic correctness.
+Similarly <em>Ignoring floating point errors up to a specific position</em> judge is popular choice for problems
+where result numbers are not integers.</p>
+<p>We have mentioned that the judge can also return <em>the score</em>. More information will be presented in the section
+&lt;a href=&#8221;#advanced-judges&#8221;&gt;advanced test case judges&lt;/a&gt;, for now you can assume that the score is the test
+case execution time.</p>
+<p>It is possible to create custom test case judges. The author can implement any kind of verification having full
+access to the input file, base input file, user&#8217;s output file and even user&#8217;s source code. For more information
+visit the section &lt;a href=&#8221;#advanced-judges&#8221;&gt;advanced test case judges&lt;/a&gt;.</p>
+<p>For the <em>Integer Power</em> problem we decide to use default <em>Ignoring differences in whitespaces</em> judge for each
+test case thus we allow the user to generate extra whitespaces before and after the resulting number <em>a&lt;sup&gt;b&lt;/sup&gt;</em>.
+For example when user&#8217;s solution prints <em>&#8220;&amp;nbsp;&amp;nbsp;&amp;nbsp;81&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#8221;</em> as a result for <em>&#8220;3 4&#8221;</em>
+problem instance it is still correct answer.</p>
+</div>
+<div class="section" id="master-judge">
+<h2>Master judge<a class="headerlink" href="#master-judge" title="Permalink to this headline">¶</a></h2>
+<p>We have discussed the individual test cases for the problem and established that each of them returns information,
+i.e. status and the score. The master judge is the component which combines all incoming results obtained from test
+cases to produce the final result which is the status and the score. You can look again at the
+&lt;a href=&#8221;#submission-flow-diagram&#8221;&gt;submission flow diagram&lt;/a&gt; for better understanding.</p>
+<p>There are predefined master judges proper for most situations:
+- <strong>Generic masterjudge</strong> - it gathers information from test case judges and requires each of them to achieve <em>&#8220;accepted&#8221;</em></p>
+<blockquote>
+<div>as the result to establish final result as the <em>&#8220;accepted&#8221;</em>. When any test case ends with error the final answer is
+inherited from the first failed test case. For example when the problem has five test cases and the second and the
+fourth ones failed, the final result is inherited from the second test case. Generic masterjudge combines the execution
+times of all testcases and yields the sum as the final score.</div></blockquote>
+<ul class="simple">
+<li><strong>Score is % of correctly solved sets</strong> - it is a more liberal masterjudge which allows to accept incomplete solution
+with the score which is the percentage of correctly solved test cases. For example when the problem has five test cases
+and again the second and the fourth ones failed but the rest was passed, the final score is equal to <em>60%</em>. The advantage
+is that the user gets more information about the correctness level of its solution.</li>
+</ul>
+<p>When you need to use more complex master judge it is possible to create the new one or modify the existing ones. You have
+access to the source code of default master judges and they can be used as a base for your modifications. Further information
+about designing master judges you can find in the section &lt;a href=&#8221;advanced-master-judges&#8221;&gt;Advanced master judges&lt;/a&gt;</p>
+<p>The last missing part for the example we successively improve is the choice of master judge. We created two test cases and
+there is no need to implement the specific own master judge thus we select default one. When we need to distinguish the
+solutions as better or worst (but both correct) we should rather choose <em>Score is % of correctly solved sets</em> but in our
+situation each test case is a pure verification of correctness (i.e. no performance aspects tested) thus we select
+<em>Generic masterjudge</em> to force the user&#8217;s solution to pass all test cases.</p>
+</div>
+<div class="section" id="complete-example">
+<h2>Complete example<a class="headerlink" href="#complete-example" title="Permalink to this headline">¶</a></h2>
+<p>We have discussed all components of the problem specification therefore we are able to present whole problem setting:</p>
+<dl class="docutils">
+<dt><strong>Title</strong></dt>
+<dd>The Integer Power</dd>
+<dt><strong>Description</strong></dt>
+<dd><p class="first">Write the program which takes two numbers <em>a</em> and <em>b</em> and returns the value of <em>a&lt;sup&gt;b&lt;/sup&gt;</em>. For example
+for <em>a = 3</em> and <em>b = 4</em> the result is <em>3&lt;sup&gt;4&lt;/sup&gt; = 81</em></p>
+<p><em>Input / output specification:</em></p>
+<p><strong>Input:</strong> In the only line of the input there will be two integer numbers <em>1 &lt;= a &lt;= 8</em> and <em>0 &lt;= b &lt;= 10</em>
+separated by a single space character.
+<strong>Output:</strong> Program should write a single number which is a value of <em>a&lt;sup&gt;b&lt;/sup&gt;</em>.&lt;/strong&gt;</p>
+<p><em>Examples:</em></p>
+<p>Example 1:
+<strong>Input:</strong>
+3 4</p>
+<p><strong>Output:</strong>
+81</p>
+<p>Example 2:
+<strong>Input:</strong>
+7 0</p>
+<p class="last"><strong>Output:</strong>
+1</p>
+</dd>
+</dl>
+<p><strong>Test cases</strong></p>
+<blockquote>
+<div><p><strong>Test case 1:</strong></p>
+<p><strong>Input file:</strong>
+3 4
+<strong>Output file:</strong>
+81
+<strong>Judge</strong> - Ignoring differences in whitespaces
+<strong>Time limit</strong> - 1s</p>
+<p><strong>Test case 2:</strong>
+<strong>Input file:</strong>
+7 0</p>
+<p><strong>Output file:</strong>
+1
+<strong>Judge</strong> - Ignoring differences in whitespaces
+<strong>Time limit</strong> - 1s</p>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>Master judge</strong></dt>
+<dd>Generic master judge</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="submissions.html" class="btn btn-neutral float-right" title="Submissions">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="Introduction"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Sphere Research Team.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/"dupa%3dpies""></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
